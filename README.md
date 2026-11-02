@@ -1,6 +1,6 @@
 # Web Automation Testing - Klik Indomaret (EDTS QA Technical Test)
 
-Repository ini berisi skrip automated testing berbasis **Playwright** dengan bahasa **TypeScript** dan arsitektur **Page Object Model (POM)** untuk memenuhi instruksi teknis Soal 7 (Web Automation tanpa login).
+Repository ini berisi skrip automated testing berbasis **Playwright** dengan bahasa **TypeScript** dan arsitektur **Page Object Model (POM)**.
 
 ---
 
