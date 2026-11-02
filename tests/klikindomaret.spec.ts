@@ -4,45 +4,6 @@ import { CategoryPage } from '../pages/CategoryPage';
 import { ProductDetailPage } from '../pages/ProductDetailPage';
 
 test.describe('Klik Indomaret - Web Automation Test (Tanpa Login)', () => {
-  test.beforeEach(async ({ page }) => {
-    // 1. Playwright native Locator Handler for Exit-intent modal
-    await page.addLocatorHandler(
-      page.getByText('Keluar dari Klik Indomaret', { exact: true }),
-      async () => {
-        const batalBtn = page.locator('button').filter({ hasText: /^Batal$/i }).first();
-        if (await batalBtn.isVisible().catch(() => false)) {
-          await batalBtn.click({ force: true }).catch(() => {});
-        }
-        await page.evaluate(() => {
-          document.querySelectorAll('.modal-open').forEach(m => {
-            if (m.textContent?.includes('Keluar dari Klik Indomaret')) {
-              m.classList.remove('modal-open');
-              m.remove();
-            }
-          });
-        }).catch(() => {});
-      }
-    );
-
-    // 2. Playwright native Locator Handler for App QR promo popup
-    await page.addLocatorHandler(
-      page.locator('#modalAppsQRDesktop button[aria-label="Close"], #modalAppsQRDesktop'),
-      async () => {
-        const closeBtn = page.locator('#modalAppsQRDesktop button[aria-label="Close"]').first();
-        if (await closeBtn.isVisible().catch(() => false)) {
-          await closeBtn.click({ force: true }).catch(() => {});
-        }
-        await page.evaluate(() => {
-          const qr = document.querySelector('#modalAppsQRDesktop');
-          if (qr) {
-            qr.closest('.modal-open')?.remove();
-            qr.remove();
-          }
-        }).catch(() => {});
-      }
-    );
-  });
-
   test('User dapat memilih produk Madu di Meta Kategori Makanan dan klik +Keranjang', async ({ page }) => {
     const homePage = new HomePage(page);
     const categoryPage = new CategoryPage(page);

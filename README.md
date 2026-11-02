@@ -97,3 +97,4 @@ Tersedia beberapa perintah pengujian melalui npm scripts:
      - `--disable-features=BlockInsecurePrivateNetworkRequests...`
 3. **Responsive Breakpoint**:
    - Sidebar navigasi kategori Klik Indomaret menggunakan breakpoint desktop. Viewport diatur pada resolusi `1440x900` untuk memastikan elemen kategori selalu terlihat (*visible*).
+

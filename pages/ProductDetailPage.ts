@@ -1,10 +1,10 @@
-import { Locator, expect } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class ProductDetailPage extends BasePage {
   readonly addToCartButton: Locator;
 
-  constructor(page: any) {
+  constructor(page: Page) {
     super(page);
     this.addToCartButton = this.page
       .locator('button')
@@ -19,8 +19,8 @@ export class ProductDetailPage extends BasePage {
     await this.dismissModalsIfPresent();
     await this.addToCartButton.waitFor({ state: 'visible', timeout: 15000 });
     await this.addToCartButton.scrollIntoViewIfNeeded().catch(() => {});
-    await this.addToCartButton.click({ force: true });
-    await this.wait(2000);
+    await this.addToCartButton.click();
+    await this.wait(2500);
   }
 
   /**
@@ -28,7 +28,7 @@ export class ProductDetailPage extends BasePage {
    * meminta user untuk autentikasi (memunculkan modal Masuk Akun).
    */
   async assertLoginRequiredModal(): Promise<void> {
-    const authTextLocator = this.page.getByText(/Masuk Akun|Nomor Handphone atau Email/i).first();
-    await expect(authTextLocator).toBeVisible({ timeout: 10000 });
+    const authModalText = this.page.getByText(/Masuk Akun|Nomor Handphone atau Email/i).first();
+    await expect(authModalText).toBeVisible({ timeout: 10000 });
   }
 }
